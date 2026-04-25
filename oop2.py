@@ -13,12 +13,11 @@ class employee:
         return "name: {} surname: {}".format(self.name,self.lastname)
         
     def apply_raise(self):
-        self.salary = self.salary * 1.05 #bu şekilde de zam yapılabilir ama bu şekilde yaparsak zam oranını değiştirmek istediğimizde tüm kodu değiştirmemiz gerekir. Bu yüzden raise_rate adında bir class variable tanımladık ve zam oranını bu değişken üzerinden kontrol ediyoruz.
-        self.salary = self.salary * employee.raise_rate #bu şekilde de zam yapılabilir ama bu şekilde yaparsak zam oranını değiştirmek istediğimizde tüm kodu değiştirmemiz gerekir. Bu yüzden raise_rate adında bir class variable tanımladık ve zam oranını bu değişken üzerinden kontrol ediyoruz.
-        self.salary = self.salary * self.raise_rate #bu şekilde de zam yapılabilir ama bu şekilde yaparsak zam oranını değiştirmek istediğimizde tüm kodu değiştirmemiz gerekir. Bu yüzden raise_rate adında bir class variable tanımladık ve zam oranını bu değişken üzerinden kontrol ediyoruz. self.raise_rate yazarsak önce nesnenin raise_rate özelliğine bakar eğer yoksa class variable olan raise_rate özelliğine bakar ve onu kullanır. Bu şekilde de zam oranını değiştirmek istediğimizde sadece class variable olan raise_rate değişkenini değiştirmemiz yeterli olur.
-        self.salary = self.salary * employee.raise_rate #bu şekilde de zam yapılabilir ama bu şekilde yaparsak zam oranını değiştirmek istediğimizde tüm kodu değiştirmemiz gerekir. Bu yüzden raise_rate adında bir class variable tanımladık ve zam oranını bu değişken üzerinden kontrol ediyoruz. raise_rate yazarsak önce local variable olan raise_rate değişkenine bakar eğer yoksa global variable olan raise_rate değişkenine bakar eğer yoksa class variable olan raise_rate değişkenine bakar ve onu kullanır. Bu şekilde de zam oranını değiştirmek istediğimizde sadece class variable olan raise_rate değişkenini değiştirmemiz yeterli olur.ve burada şuanda error alırız.
-
-emp1 = employee("john","doe",50000) #böyle de tanimlanabilir ve genelde böyle tanimlanir.
+        self.salary = self.salary * 1.05 #case A
+        self.salary = self.salary * self.raise_rate #case B 
+        self.salary = self.salary * employee.raise_rate #case C
+        
+emp1 = employee("john","doe",50000) 
 
 print(emp1.salary)
 
